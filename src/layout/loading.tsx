@@ -1,4 +1,4 @@
-import './loading.scss';
+import './loading.css';
 import { useMount } from 'ahooks';
 const Loading = () => {
     useMount(() => {

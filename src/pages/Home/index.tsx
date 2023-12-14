@@ -1,11 +1,27 @@
-import { useNavigate } from 'react-router-dom';
-const Home = () => {
-    const navigate = useNavigate();
+import {Button} from '@nextui-org/react';
 
+const Home = () => {
     return (
         <> 
-            <div className='box-border h-32 w-32 p-4 border-0'>
-                containent
+            <div className="flex flex-wrap gap-4 items-center">
+                <Button color="default">
+        Default
+                </Button>
+                <Button color="primary">
+        Primary
+                </Button>  
+                <Button color="secondary">
+        Secondary
+                </Button>  
+                <Button color="success">
+        Success
+                </Button>  
+                <Button color="warning">
+        Warning
+                </Button>  
+                <Button color="danger">
+        Danger
+                </Button>  
             </div>
         </>
     );
