@@ -4,11 +4,9 @@ const Home = () => {
 
     return (
         <> 
-            <div onClick={
-                () => {
-                    navigate('/login');
-                } 
-            }>Home</div>
+            <div className='box-border h-32 w-32 p-4 border-0'>
+                containent
+            </div>
         </>
     );
 };

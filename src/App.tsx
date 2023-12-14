@@ -3,7 +3,7 @@ import {RouterProvider} from 'react-router-dom';
 import router from '@/router';
 import {Suspense} from 'react';
 import Loading from './layout/loading';
-import './App.scss';
+import './App.css';
 
 const App = () => {
     useMount(() => {
