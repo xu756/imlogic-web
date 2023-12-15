@@ -1,7 +1,6 @@
 import {
     Navigate,
     createBrowserRouter,
-
 } from 'react-router-dom';
 import Layout from '@/layout/layout';
 import {lazy} from 'react';
