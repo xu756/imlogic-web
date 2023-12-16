@@ -7,13 +7,14 @@ const Login = () => {
 
     return (
         <>
-            <div onClick={
-                () => {
+            <div
+                onClick={() => {
                     navigate('/home');
-                } 
-            }>Login</div>
+                }}
+            >
+                Login
+            </div>
         </>
-
     );
 };
 

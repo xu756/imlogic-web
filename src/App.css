@@ -1,11 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
+* {
     margin: 0;
     padding: 0;
 }
-html body,#root{
+html body,
+#root {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
@@ -14,15 +15,14 @@ html body,#root{
 /* WebKit browsers (Chrome, Safari) */
 .area {
     scrollbar-width: thin; /* Firefox */
-  }
-  
-  .area::-webkit-scrollbar {
+}
+
+.area::-webkit-scrollbar {
     width: 8px;
-  }
-  
-  .area::-webkit-scrollbar-thumb {
-    background-color: #888; 
-    border-radius: 5px ;
+}
+
+.area::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
     background-clip: padding-box;
-  }
-  
+}

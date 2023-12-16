@@ -1,7 +1,7 @@
-import {useMount} from 'ahooks';
-import {RouterProvider} from 'react-router-dom';
+import { useMount } from 'ahooks';
+import { RouterProvider } from 'react-router-dom';
 import router from '@/router';
-import {Suspense} from 'react';
+import { Suspense } from 'react';
 import Loading from './layout/loading';
 import './App.css';
 
@@ -10,8 +10,8 @@ const App = () => {
         console.log('App mounted');
     });
     return (
-        <Suspense fallback={<Loading/>}>
-            <RouterProvider  router={router} />
+        <Suspense fallback={<Loading />}>
+            <RouterProvider router={router} />
         </Suspense>
     );
 };

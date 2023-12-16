@@ -4,11 +4,7 @@ const Loading = () => {
     useMount(() => {
         console.log('loading');
     });
-    return (
-        <>
-          加载...
-        </>
-    );
+    return <>加载...</>;
 };
 
 export default Loading;
