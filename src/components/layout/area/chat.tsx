@@ -1,19 +1,27 @@
-import { Chat } from '@/model/chat';
-const chat = (prop: Chat) => {
+import { ChatModel } from '@/model/chat_model';
+const chat = (prop: ChatModel) => {
     return (
         <>
-            <div className="chat">
-                <div className="chat__image">
-                    <img src={prop.chatImage} alt="" />
+            <div className="w-full flex hover:bg-slate-50 p-1 rounded-lg ">
+                <div className="flex-none w-[36px] h-[36px] my-1 mx-[3px]">
+                    <img
+                        src={prop.chatImage}
+                        alt=""
+                        className="w-full h-full rounded-[8px]"
+                    />
                 </div>
-                <div className="chat__details">
-                    <div className="chat__details__top">
-                        <h3>{prop.chatName}</h3>
-                        <p>{prop.chatLastMessageTime}</p>
+                <div className="grow my-1 truncate">
+                    <div className="flex grow justify-between">
+                        <div className="text-sm font-bold text-gray-800">
+                            {prop.chatName}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                            {prop.chatLastMessageTime}
+                        </div>
                     </div>
-                    <div className="chat__details__bottom">
-                        <p>{prop.chatLastMessage}</p>
-                    </div>
+                    <p className="text-xs text-gray-500 truncate">
+                        {prop.chatLastMessage}
+                    </p>
                 </div>
             </div>
         </>

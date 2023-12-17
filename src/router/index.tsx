@@ -1,6 +1,7 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 import Layout from '@/layout/layout';
 import { lazy } from 'react';
+import DebugPage from '../pages/Debug/index';
 const Home = lazy(() => import('@/pages/Home'));
 const NotFound = lazy(() => import('@/pages/Error/404'));
 const Login = lazy(() => import('@/pages/Login'));
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     {
         path: '/*',
         element: <NotFound />,
+    },
+    {
+        path: '/debug',
+        element: <DebugPage />,
     },
 ]);
 export default router;
