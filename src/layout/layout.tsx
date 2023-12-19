@@ -28,11 +28,10 @@ const AuthRoute = () => {
         },
         handleWrapperClass: 'resize',
         className: 'bg-gray-300 ',
-
-        onMouseUp: (e: { clientX: number }) => [
-            // 打印宽度
-            setWidth(Math.min(Math.max(e.clientX - 64, 180), 500)),
-        ],
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onResize: (e: any) => {
+            setWidth(Math.min(Math.max(e.clientX - 64, 180), 500));
+        },
     };
 
     return (
