@@ -11,6 +11,9 @@ dependencies:
   ahooks:
     specifier: ^3.7.8
     version: 3.7.8(react@18.2.0)
+  dayjs:
+    specifier: ^1.11.10
+    version: 1.11.10
   re-resizable:
     specifier: ^6.9.11
     version: 6.9.11(react-dom@18.2.0)(react@18.2.0)

@@ -1,4 +1,6 @@
 import { ChatModel } from '@/model/chat_model';
+import dayjs from 'dayjs';
+
 const chat = (prop: ChatModel) => {
     return (
         <>
