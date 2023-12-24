@@ -2,7 +2,7 @@ import { ChatModel } from '@/model/chat_model';
 const chat = (prop: ChatModel) => {
     return (
         <>
-            <div className="w-full flex hover:bg-slate-50 p-1 rounded-lg ">
+            <div className="w-full flex hover:bg-slate-50 p-1 rounded-lg my-1  ">
                 <div className="flex-none w-[36px] h-[36px] my-1 mx-[3px]">
                     <img
                         src={prop.chatImage}

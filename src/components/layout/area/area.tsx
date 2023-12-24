@@ -7,13 +7,18 @@ const Area = () => {
     });
     return (
         <>
-            <div className="area h-full overflow-auto scroll-smooth p-2 ">
-                <Chat
-                    chatImage="https://avatars.githubusercontent.com/u/84982391?v=4"
-                    chatName="测试"
-                    chatLastMessage="测试11111m1sbjs111111jbsjbsjsbsb"
-                    chatLastMessageTime="2021-10-10"
-                />
+            <div className="area h-full overflow-auto scroll-smooth p-1">
+                {new Array(100).fill(1).map((item, index) => {
+                    return (
+                        <Chat
+                            key={index}
+                            chatImage="https://avatars.githubusercontent.com/u/84982391?v=4"
+                            chatName="测试"
+                            chatLastMessage="测试11111m1sbjs111111jbsjbsjsbsb"
+                            chatLastMessageTime="2021-10-10"
+                        />
+                    );
+                })}
             </div>
         </>
     );
