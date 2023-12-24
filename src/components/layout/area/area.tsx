@@ -1,23 +1,29 @@
-import { useMount } from 'ahooks';
+import { useMount, useInterval } from 'ahooks';
 import Chat from './chat';
+import { useAppSelector, useAppDispatch, addChat } from '@/store';
 
 const Area = () => {
+    const chatList = useAppSelector(state => state.chatList);
     useMount(() => {
         console.log('area');
     });
+    const dispatch = useAppDispatch();
+    useInterval(() => {
+        dispatch(
+            addChat({
+                chatId: '22pk',
+                chatName: '李四',
+                chatImage: 'https://img.yzcdn.cn/vant/cat.jpeg',
+                chatLastMessage: '你好',
+                chatLastMessageTime: new Date().getTime(),
+            })
+        );
+    }, 1500);
     return (
         <>
-            <div className="area h-full overflow-auto scroll-smooth p-x-1 ">
-                {new Array(100).fill(1).map((item, index) => {
-                    return (
-                        <Chat
-                            key={index}
-                            chatImage="https://avatars.githubusercontent.com/u/84982391?v=4"
-                            chatName={`测试${index}`}
-                            chatLastMessage="测试11111m1sbjs111111jbsjbsjsbsb"
-                            chatLastMessageTime="2021-10-10"
-                        />
-                    );
+            <div className="area h-full overflow-auto scroll-smooth">
+                {chatList.map((item, index) => {
+                    return <Chat key={index} {...item} />;
                 })}
             </div>
         </>
