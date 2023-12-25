@@ -1,5 +1,5 @@
 export interface ChatModel {
-    chatId?: string;
+    chatId: string;
     chatName?: string;
     chatImage?: string;
     chatLastMessage?: string;

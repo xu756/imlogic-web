@@ -1,10 +1,26 @@
 import { ChatModel } from '@/model/chat_model';
-import dayjs from 'dayjs';
+import { useAppDispatch, setActiveChat } from '@/store';
+import { useAppSelector } from '@/store';
 
-const chat = (prop: ChatModel) => {
+const Chat = (prop: ChatModel) => {
+    const chatStore = useAppSelector(state => state.chat);
+    const dispatch = useAppDispatch();
+    const clickChat = () => {
+        dispatch(setActiveChat(prop.chatId));
+    };
     return (
         <>
-            <div className="w-full cursor-pointer not-select flex hover:bg-area-hover p-1 rounded-lg ">
+            <div
+                className={
+                    'w-full cursor-pointer not-select flex p-1 rounded-lg' +
+                    ` ${
+                        chatStore.activeChat === prop.chatId
+                            ? 'bg-area-chatActive'
+                            : ''
+                    }`
+                }
+                onClick={clickChat}
+            >
                 <div className="flex-none w-[36px] h-[36px] my-1 mx-[3px]">
                     <img
                         src={prop.chatImage}
@@ -29,4 +45,4 @@ const chat = (prop: ChatModel) => {
         </>
     );
 };
-export default chat;
+export default Chat;

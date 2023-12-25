@@ -7,7 +7,7 @@ const theme = {
             contain: '#eaeaea',
         },
         area: {
-            hover: '#c9d6df',
+            chatActive: '#c9d6df',
             chatName: '#000000',
             chatLastMessageTime: '#212121',
             chatLastMessage: '#52616b',

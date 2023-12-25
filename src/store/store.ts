@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { chatList } from './chat';
+import { chatStore } from './chat';
 const store = configureStore({
     reducer: {
-        chatList: chatList.reducer,
+        chat: chatStore.reducer,
     },
 });
 

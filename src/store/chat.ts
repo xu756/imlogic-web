@@ -1,7 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ChatModel } from '@/model/chat_model';
-
-const initialState: ChatModel[] = [
+const initChatList: ChatModel[] = [
     {
         chatId: '11pk',
         chatName: '张三',
@@ -39,15 +38,27 @@ const initialState: ChatModel[] = [
     },
 ];
 
-export const chatList = createSlice({
+export const chatStore = createSlice({
     name: 'chatList',
-    initialState: initialState,
+    initialState: {
+        chatList: initChatList,
+        activeChat: '',
+    },
     reducers: {
-        addChat: (state, action) => {
-            console.log('addChat', action.payload);
-            state.push(action.payload);
+        addChat: (state, action: PayloadAction<ChatModel>) => {
+            state.chatList.push(action.payload);
+        },
+        setActiveChat: (state, action: PayloadAction<string>) => {
+            state.activeChat = action.payload;
+            // 当前聊天置顶
+            const activeChat = state.chatList.find(
+                item => item.chatId === action.payload
+            );
+            const index = state.chatList.indexOf(activeChat as ChatModel);
+            state.chatList.splice(index, 1);
+            state.chatList.unshift(activeChat as ChatModel);
         },
     },
 });
 
-export const { addChat } = chatList.actions;
+export const { addChat, setActiveChat } = chatStore.actions;
