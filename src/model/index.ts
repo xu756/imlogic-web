@@ -1,5 +1,2 @@
-import * as chat from './chat_model';
-
-export default {
-    chat,
-};
+export * from './chat_model';
+export * from './msg_model';

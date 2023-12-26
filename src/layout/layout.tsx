@@ -41,7 +41,7 @@ const AuthRoute = () => {
             <Resizable {...resizeProp} className="bg-layout-area">
                 <Area />
             </Resizable>
-            <div className="flex-1 bg-layout-contain p-4">
+            <div className="flex-1 bg-layout-contain ">
                 <Outlet />
             </div>
         </div>

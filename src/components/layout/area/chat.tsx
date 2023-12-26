@@ -1,4 +1,4 @@
-import { ChatModel } from '@/model/chat_model';
+import { ChatModel } from '@/model';
 import { useAppDispatch, setActiveChat } from '@/store';
 import { useAppSelector } from '@/store';
 
