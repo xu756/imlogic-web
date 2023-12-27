@@ -13,15 +13,15 @@ html body,
 }
 
 /* WebKit browsers (Chrome, Safari) */
-.area {
+.scroll {
     scrollbar-width: thin; /* Firefox */
 }
 
-.area::-webkit-scrollbar {
+.scroll::-webkit-scrollbar {
     width: 8px;
 }
 
-.area::-webkit-scrollbar-thumb {
+.scroll::-webkit-scrollbar-thumb {
     background-color: #888;
     border-radius: 5px;
     background-clip: padding-box;

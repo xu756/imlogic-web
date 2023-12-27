@@ -1,13 +1,14 @@
 import { useMount } from 'ahooks';
 
+import Message from './message';
 export const ChatWith = ({ chatId }: { chatId: string }) => {
     useMount(() => {
         console.log(chatId);
     });
     return (
         <div className="max-w-full flex flex-col h-full">
-            <div className=" bg-red-100 flex-auto overflow-auto scroll-smooth">
-                <div className="h-screen">111</div>
+            <div className="bg-red-100 flex-auto overflow-auto scroll-smooth p-3">
+                <Message chatId={chatId} />
             </div>
             <div className="w-full max-w-full border-t border-gray-300 ">
                 <div className="max-w-full flex py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700">
