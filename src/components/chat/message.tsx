@@ -7,14 +7,13 @@ export default ({ chatId }: { chatId: string }) => {
     return (
         <div className="w-full">
             <div className="flex justify-start mb-4">
-                <div className="h-8 w-8">
+                <div className="flex-none h-8 w-8">
                     <img
                         src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
                         className="object-cover h-8 w-8 rounded-full"
                         alt=""
                     />
                 </div>
-
                 <div className=" max-w-lg ml-2 py-3 px-4 bg-white rounded-br-3xl rounded-tr-2xl rounded-tl-xl">
                     <p className="text-gray-700">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -25,7 +24,7 @@ export default ({ chatId }: { chatId: string }) => {
                 </div>
             </div>
             <div className="flex justify-start mb-4">
-                <div className="h-8 w-8">
+                <div className="flex-none h-8 w-8">
                     <img
                         src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
                         className="object-cover h-8 w-8 rounded-full"
