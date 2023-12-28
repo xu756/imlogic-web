@@ -4,7 +4,7 @@ import { useMount } from 'ahooks';
 import { WebSocketService } from '@/utils';
 const Home = () => {
     const activeChat = useAppSelector(state => state.chat.activeChat);
-    const ws = new WebSocketService('ws://localhost:7082/connect');
+    const ws = new WebSocketService('ws://192.168.0.195:7082/connect');
     useMount(() => {
         console.log('activeChat', activeChat);
         console.log('ws', ws);

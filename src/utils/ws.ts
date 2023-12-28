@@ -18,8 +18,12 @@ export class WebSocketService {
             console.log('WebSocket connected');
         };
         this.ws.onmessage = e => {
-            console.log(e.data);
+            const data = JSON.parse(e.data);
+            this.data = data;
+            console.log(data);
+            // this.event.dispatchEvent(new Event('message'));
         };
+
         this.ws.onclose = () => {
             console.log('WebSocket disconnected');
         };
@@ -35,9 +39,9 @@ export class WebSocketService {
         }
     }
 
-    send(data: Blob): void {
+    send(data: Message): void {
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
-            this.ws.send(data);
+            this.ws.send(JSON.stringify(data));
         } else {
             console.error('WebSocket is not connected');
         }
