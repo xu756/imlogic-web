@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { chatStore } from './hooks/chat';
 const store = configureStore({
-    reducer: {
-        chat: chatStore.reducer,
-    },
+  reducer: {
+    chat: chatStore.reducer,
+  },
 });
 
 export default store;

@@ -1,10 +1,10 @@
-import './loading.css';
 import { useMount } from 'ahooks';
+import './loading.css';
 const Loading = () => {
-    useMount(() => {
-        console.log('loading');
-    });
-    return <>加载...</>;
+  useMount(() => {
+    console.log('loading');
+  });
+  return <>加载...</>;
 };
 
 export default Loading;
