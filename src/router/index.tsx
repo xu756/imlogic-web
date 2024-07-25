@@ -7,6 +7,14 @@ const Login = lazy(() => import('@/pages/Login'));
 
 const router = createBrowserRouter([
   {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/*',
+    element: <NotFound />,
+  },
+  {
     path: '/',
     element: <Layout />,
     children: [
@@ -22,14 +30,6 @@ const router = createBrowserRouter([
         },
       },
     ],
-  },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/*',
-    element: <NotFound />,
   },
 ]);
 export default router;

@@ -14,6 +14,20 @@ export default defineConfig({
       '@/store': '/src/store',
     },
   },
+  css: {
+    //* css模块化
+    modules: {
+      // css模块化 文件以.module.[css|less|scss]结尾
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+      hashPrefix: 'prefix',
+    },
+    //* 预编译支持less
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+    },
+  },
   server: {
     port: 3003,
     host: 'dev.imlogic.cn',
