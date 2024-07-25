@@ -1,4 +1,3 @@
-import { ChatWith } from '@/components/chat';
 import { useAppSelector } from '@/store';
 import { WebSocketService } from '@/utils';
 import { useMount } from 'ahooks';
@@ -10,11 +9,7 @@ const Home = () => {
     console.log('ws', ws);
     ws.connect();
   });
-  return (
-    <>
-      <ChatWith chatId={activeChat} />
-    </>
-  );
+  return <>1</>;
 };
 
 export default Home;
