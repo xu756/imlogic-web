@@ -8,10 +8,10 @@ export const chatStore = createSlice({
     activeChat: '',
   },
   reducers: {
-    addChat: (state, action: PayloadAction) => {
+    addChat: (state, action: PayloadAction<Model.Chat>) => {
       state.chatList.push(action.payload);
     },
-    setActiveChat: (state, action: PayloadAction) => {
+    setActiveChat: (state, action: PayloadAction<string>) => {
       state.activeChat = action.payload;
     },
   },
