@@ -6,7 +6,6 @@ import router from './router';
 // import relativeTime from 'dayjs/plugin/relativeTime'; // 导入插件
 import { Suspense } from 'react';
 import { Provider } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router';
 import { RouterProvider } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -18,9 +17,6 @@ import { getCookie } from './utils';
 dayjs.locale('zh-cn'); // 使用本地化语言
 
 const App = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
   useMount(() => {
     const token = getCookie('ImlogicToken');
     if (
@@ -31,7 +27,7 @@ const App = () => {
       localStorage.setItem('session_id', sessionId);
     }
     if (location.pathname !== '/login' && !token) {
-      navigate('/login');
+      window.location.href = '/login';
       Toast.error({
         content: '登录超时',
       });
