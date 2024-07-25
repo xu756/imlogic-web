@@ -43,8 +43,8 @@ instance.interceptors.response.use(
 );
 
 // 封装POST请求
-export const post = <T = any>(url: string, data: any): Promise => {
-  return new Promise((resolve, reject) => {
+export const post = <T = any>(url: string, data: any) => {
+  return new Promise<T>((resolve, reject) => {
     instance
       .post<ResponseStructure>(url, data)
       .then((res) => {

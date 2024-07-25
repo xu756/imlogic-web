@@ -22,7 +22,13 @@
     "baseUrl": ".", // 用于设置解析非相对模块名称的基本目录，相对模块不会受到baseUrl的影响
     "paths": {
       // 用于设置模块名到基于baseUrl的路径映射
-      "@/*": ["src/*"]
+      "@/pages/*": ["src/pages/*"],
+      "@/components/*": ["src/components/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/service": ["src/service/index.ts"],
+      "@/store": ["src/store/index.ts"],
+      "@/assets/*": ["src/assets/*"],
+      "@/layout/*": ["src/layout/*"]
     }
   },
   "include": ["src"],
