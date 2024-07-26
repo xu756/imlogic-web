@@ -14,7 +14,6 @@ export default () => {
     <Layout className={styles.layout}>
       <Sider className={styles.side}>
         <Nav
-          style={{ height: '100%' }}
           defaultSelectedKeys={selectedKeys}
           items={[
             {
@@ -33,7 +32,7 @@ export default () => {
             text: system.name,
           }}
           footer={{
-            collapseButton: true,
+            collapseButton: false,
           }}
           onSelect={(data: any) => navigate(data.itemKey, {})}
         />

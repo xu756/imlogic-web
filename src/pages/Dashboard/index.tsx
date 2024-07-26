@@ -7,11 +7,15 @@ export default () => {
   const system = useAppSelector((state) => state.system);
 
   return (
-    <PanelGroup direction="horizontal" className={styles.layout}>
+    <PanelGroup
+      autoSaveId="dashboard"
+      direction="horizontal"
+      className={styles.layout}
+    >
       <Panel
         defaultSize={20}
         minSize={20}
-        maxSize={25}
+        maxSize={40}
         className={styles.chatlist}
       >
         chatlist
