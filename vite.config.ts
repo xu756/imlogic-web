@@ -32,5 +32,8 @@ export default defineConfig({
     port: 3003,
     host: 'dev.imlogic.cn',
     hmr: true,
+    watch: {
+      usePolling: true, // 修复HMR热更新失效
+    },
   },
 });
