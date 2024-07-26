@@ -1,17 +1,13 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './index.module.less';
 import { useCookieState, useMount } from 'ahooks';
 import { accountLogin, mobileLogin } from '@/service';
-import {
-  Form,
-  Card,
-  Avatar,
-  Tooltip,
-  useFormApi,
-  Button,
-} from '@douyinfe/semi-ui';
+import { Form, Toast, Avatar, Button } from '@douyinfe/semi-ui';
 import { Typography, Space } from '@douyinfe/semi-ui';
 import { useAppSelector } from '@/store';
+import { useNavigate } from 'react-router-dom';
+import { FormApi } from '@douyinfe/semi-ui/lib/es/form';
+import { delCookie } from '@/utils/cookies';
 
 const Login = () => {
   type LoginType = 'mobile' | 'account';
@@ -19,8 +15,10 @@ const Login = () => {
   const sessionId = localStorage.getItem('session_id');
   const [jwt, setJwt] = useCookieState('ImlogicToken');
   const system = useAppSelector((state) => state.system);
-  let formApi = useFormApi<API.LoginReq>();
+  const formApi = useRef<FormApi<API.LoginReq>>();
+  const navigate = useNavigate();
   useMount(() => {
+    delCookie('ImlogicToken');
     console.log(system);
   });
   const handleLogin = async (values: API.LoginReq) => {
@@ -33,9 +31,12 @@ const Login = () => {
           path: location.origin,
           expires: (() => new Date(+new Date() + hour * 60 * 60 * 1000))(),
         });
-        // updateUserAccess();
+        navigate('/dashboard');
+        Toast.success({
+          content: '登录成功',
+        });
       } catch (e) {
-        formApi.reset();
+        formApi.current?.reset();
       }
     } else {
       try {
@@ -45,7 +46,7 @@ const Login = () => {
           expires: (() => new Date(+new Date() + hour * 60 * 60 * 1000))(),
         });
       } catch (e) {
-        formApi.reset();
+        formApi.current?.reset();
       }
     }
   };
@@ -59,21 +60,52 @@ const Login = () => {
         <Typography.Title heading={4}>{system.description}</Typography.Title>
         <Form<API.LoginReq>
           getFormApi={(api) => {
-            formApi = api;
+            formApi.current = api;
+          }}
+          initValues={{
+            username: 'admin',
+            password: '123456',
+            autoLogin: true,
           }}
           style={{ width: 300 }}
           onSubmit={handleLogin}
-          onValueChange={(values) => console.log(values)}
+          onSubmitFail={() => {
+            Toast.error({
+              content: '请检查输入',
+            });
+          }}
         >
-          <Form.Input field="username" label="用户名" />
           <Form.Input
+            rules={[
+              {
+                required: true,
+                message: '请输入用户名',
+              },
+            ]}
+            showClear
+            field="username"
+            label="用户名"
+          />
+          <Form.Input
+            type="password"
+            showClear
+            rules={[
+              {
+                required: true,
+                message: '请输入密码',
+              },
+              {
+                min: 6,
+                message: '密码长度不能小于6位',
+              },
+            ]}
             field="password"
             label={{
               text: '密码',
             }}
           />
           <div className={styles.Checkbox}>
-            <Form.Checkbox field="autoLogin" noLabel={true}>
+            <Form.Checkbox field="autoLogin" defaultChecked noLabel={true}>
               自动登录
             </Form.Checkbox>
             <Button theme="borderless" type="primary">

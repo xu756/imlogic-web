@@ -1,7 +1,7 @@
 import Layout from '@/layout/layout';
 import { lazy } from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-const Home = lazy(() => import('@/pages/Home'));
+const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const NotFound = lazy(() => import('@/pages/Error/404'));
 const Login = lazy(() => import('@/pages/Login'));
 
@@ -20,11 +20,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Navigate to="/home" />,
+        element: <Navigate to="/dashboard" />,
       },
       {
-        path: '/home',
-        element: <Home />,
+        path: '/dashboard',
+        element: <Dashboard />,
         handle: {
           title: '首页',
         },

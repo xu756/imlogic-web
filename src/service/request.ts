@@ -1,4 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
+import { Toast } from '@douyinfe/semi-ui';
+import { delCookie } from '../utils';
 
 // 创建axios实例
 const instance = axios.create({
@@ -32,12 +34,46 @@ instance.interceptors.request.use(
 
 // 响应拦截器
 instance.interceptors.response.use(
-  (response: AxiosResponse) => {
-    // 对响应数据做点什么
-    return response.data;
+  ({ data }) => {
+    if (data.success) {
+      return data;
+    }
+    const { errorCode, errorMessage } = data;
+    switch (errorCode) {
+      case 201:
+        Toast.error({
+          content: '参数错误，请检查参数',
+        });
+        break;
+      case 202:
+        Toast.error({
+          content: '系统错误，请联系管理员',
+        });
+        break;
+      case 203:
+        Toast.error({
+          content: '无权限，请重新登录',
+        });
+        delCookie('ImlogicToken');
+        window.location.href = '/login';
+        break;
+      case 204:
+        Toast.warning({
+          content: errorMessage,
+        });
+        break;
+      default:
+        Toast.error({
+          content: errorMessage || '系统错误，请联系管理员',
+        });
+        break;
+    }
+    return Promise.reject(data);
   },
   (error) => {
-    // 对响应错误做点什么
+    Toast.error({
+      content: error.message,
+    });
     return Promise.reject(error);
   },
 );
@@ -46,7 +82,7 @@ instance.interceptors.response.use(
 export const post = <T = any>(url: string, data: any) => {
   return new Promise<T>((resolve, reject) => {
     instance
-      .post<ResponseStructure>(url, data)
+      .post<ResponseStructure<T>>(url, data)
       .then((res) => {
         resolve(res.data as T);
       })
