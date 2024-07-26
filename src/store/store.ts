@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { chatStore } from './hooks/chat';
+import { systemStore } from './hooks/system';
 const store = configureStore({
   reducer: {
     chat: chatStore.reducer,
+    system: systemStore.reducer,
   },
 });
 

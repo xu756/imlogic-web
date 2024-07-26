@@ -1,17 +1,28 @@
 import { useState } from 'react';
 import styles from './index.module.less';
-import { useCookieState } from 'ahooks';
+import { useCookieState, useMount } from 'ahooks';
 import { accountLogin, mobileLogin } from '@/service';
-import { Form, Card, Tooltip, useFormApi } from '@douyinfe/semi-ui';
-import { IconHelpCircle } from '@douyinfe/semi-icons';
+import {
+  Form,
+  Card,
+  Avatar,
+  Tooltip,
+  useFormApi,
+  Button,
+} from '@douyinfe/semi-ui';
+import { Typography, Space } from '@douyinfe/semi-ui';
+import { useAppSelector } from '@/store';
 
 const Login = () => {
   type LoginType = 'mobile' | 'account';
   const [loginType, setLoginType] = useState<LoginType>('account');
   const sessionId = localStorage.getItem('session_id');
   const [jwt, setJwt] = useCookieState('ImlogicToken');
-  const formApi = useFormApi();
-
+  const system = useAppSelector((state) => state.system);
+  let formApi = useFormApi<API.LoginReq>();
+  useMount(() => {
+    console.log(system);
+  });
   const handleLogin = async (values: API.LoginReq) => {
     const hour = values.autoLogin ? 3 * 24 : 3;
     values.session_id = String(sessionId);
@@ -40,9 +51,18 @@ const Login = () => {
   };
   return (
     <div className={styles.main}>
-      <Card className={styles.form}>
+      <div className={styles.form}>
+        <Space align="center">
+          <Avatar src={system.logo} />
+          <Typography.Title heading={2}>{system.name}</Typography.Title>
+        </Space>
+        <Typography.Title heading={4}>{system.description}</Typography.Title>
         <Form<API.LoginReq>
-          onSubmit={(values) => console.log(values)}
+          getFormApi={(api) => {
+            formApi = api;
+          }}
+          style={{ width: 300 }}
+          onSubmit={handleLogin}
           onValueChange={(values) => console.log(values)}
         >
           <Form.Input field="username" label="用户名" />
@@ -50,18 +70,22 @@ const Login = () => {
             field="password"
             label={{
               text: '密码',
-              extra: (
-                <Tooltip content="详情">
-                  <IconHelpCircle
-                    style={{ color: 'var(--semi-color-text-2)' }}
-                  />
-                </Tooltip>
-              ),
             }}
-            style={{ width: 176 }}
           />
+          <div className={styles.Checkbox}>
+            <Form.Checkbox field="autoLogin" noLabel={true}>
+              自动登录
+            </Form.Checkbox>
+            <Button theme="borderless" type="primary">
+              忘记密码
+            </Button>
+          </div>
+
+          <Button block htmlType="submit">
+            提交
+          </Button>
         </Form>
-      </Card>
+      </div>
     </div>
   );
 };

@@ -36,3 +36,7 @@ export const getUserAccess = async () => {
     method: 'POST',
   });
 };
+
+export const getSystemConfig = async () => {
+  return post<Store.System>('/system/config', {});
+};

@@ -5,19 +5,28 @@ import dayjs from 'dayjs';
 import router from './router';
 // import relativeTime from 'dayjs/plugin/relativeTime'; // 导入插件
 import { Suspense } from 'react';
-import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import './App.css';
 import Loading from './layout/loading';
-import store from './store/store';
 import { getCookie } from './utils';
 // dayjs.extend(relativeTime); // 使用插件
 dayjs.locale('zh-cn'); // 使用本地化语言
 
+import { useAppDispatch, setSystem } from '@/store';
+
 const App = () => {
+  const dispatch = useAppDispatch();
   useMount(() => {
+    dispatch(
+      setSystem({
+        name: '智云工坊管理系统',
+        version: '1.0.0',
+        description: '让科技生活更简单',
+        logo: 'https://cos.imlogic.cn/appserver/images/logo.svg',
+      }),
+    );
     const token = getCookie('ImlogicToken');
     if (
       location.pathname === '/login' ||
@@ -36,11 +45,9 @@ const App = () => {
     }
   });
   return (
-    <Provider store={store}>
-      <Suspense fallback={<Loading />}>
-        <RouterProvider router={router} />
-      </Suspense>
-    </Provider>
+    <Suspense fallback={<Loading />}>
+      <RouterProvider router={router} />
+    </Suspense>
   );
 };
 
