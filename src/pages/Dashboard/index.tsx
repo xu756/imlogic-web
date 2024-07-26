@@ -1,15 +1,23 @@
+import { Outlet } from 'react-router-dom';
 import { useAppSelector } from '@/store';
-// import { WebSocketService } from '@/utils';
-import { useMount } from 'ahooks';
-const Home = () => {
-  const activeChat = useAppSelector((state) => state.chat.activeChat);
-  // const ws = new WebSocketService('ws://127.0.0.1:7082/connect');
-  useMount(() => {
-    console.log('activeChat', activeChat);
-    // console.log('ws', ws);
-    // ws.connect();
-  });
-  return <>1</>;
-};
+import styles from './index.module.less';
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
-export default Home;
+export default () => {
+  const system = useAppSelector((state) => state.system);
+
+  return (
+    <PanelGroup direction="horizontal" className={styles.layout}>
+      <Panel
+        defaultSize={20}
+        minSize={20}
+        maxSize={25}
+        className={styles.chatlist}
+      >
+        chatlist
+      </Panel>
+      <PanelResizeHandle className={styles.resizable} />
+      <Panel className={styles.content}>chat</Panel>
+    </PanelGroup>
+  );
+};

@@ -1,47 +1,47 @@
-import { Outlet } from 'react-router-dom';
-import { Nav } from '@douyinfe/semi-ui';
-import { IconSemiLogo } from '@douyinfe/semi-icons';
-import {
-  IconDescriptions,
-  IconIntro,
-  IconTree,
-  IconAvatar,
-  IconTreeSelect,
-  IconTabs,
-} from '@douyinfe/semi-icons-lab';
-
-const Layout = () => {
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useAppSelector } from '@/store';
+import styles from './index.module.less';
+import { Avatar, Layout, Nav, Typography } from '@douyinfe/semi-ui';
+import { IconHome, IconSemiLogo } from '@douyinfe/semi-icons';
+import { IconNotification } from '@douyinfe/semi-icons-lab';
+export default () => {
+  const system = useAppSelector((state) => state.system);
+  const { Sider, Content } = Layout;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const selectedKeys = [location.pathname];
   return (
-    <div className={'layout'}>
-      <div>
+    <Layout className={styles.layout}>
+      <Sider className={styles.side}>
         <Nav
-          bodyStyle={{ height: '100%' }}
+          style={{ height: '100%' }}
+          defaultSelectedKeys={selectedKeys}
           items={[
-            { itemKey: 'user', text: '用户管理', icon: <IconAvatar /> },
-            { itemKey: 'union', text: '活动管理', icon: <IconDescriptions /> },
             {
-              text: '任务平台',
-              icon: <IconTree />,
-              itemKey: 'job',
-              items: ['任务管理', '用户任务查询'],
+              itemKey: '/dashboard',
+              text: '首页',
+              icon: <IconHome />,
+            },
+            {
+              itemKey: '/chat',
+              text: '聊天',
+              icon: <IconNotification />,
             },
           ]}
           header={{
-            logo: <IconSemiLogo style={{ height: '36px', fontSize: 36 }} />,
-            text: 'Semi 运营后台',
+            logo: <Avatar size="small" src={system.logo} />,
+            text: system.name,
           }}
           footer={{
             collapseButton: true,
           }}
-          onSelect={(data) => console.log('trigger onSelect: ', data)}
-          onClick={(data) => console.log('trigger onClick: ', data)}
+          onSelect={(data: any) => navigate(data.itemKey, {})}
         />
-      </div>
+      </Sider>
 
-      <div>
+      <Content className={styles.content}>
         <Outlet />
-      </div>
-    </div>
+      </Content>
+    </Layout>
   );
 };
-export default Layout;

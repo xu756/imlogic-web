@@ -30,3 +30,7 @@
   -ms-user-select: none; /*IE10*/
   user-select: none;
 }
+
+.h100 {
+  height: 100%;
+}

@@ -21,7 +21,7 @@ const App = () => {
   useMount(() => {
     dispatch(
       setSystem({
-        name: '智云工坊管理系统',
+        name: '智云工坊',
         version: '1.0.0',
         description: '让科技生活更简单',
         logo: 'https://cos.imlogic.cn/appserver/images/logo.svg',
