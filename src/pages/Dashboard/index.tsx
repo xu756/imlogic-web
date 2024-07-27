@@ -12,8 +12,7 @@ const Dashboard = () => {
   const dispatch = useAppDispatch();
   const [ws, setWs] = useState<WebSocketService | null>(null);
   useMount(() => {
-    const newWs = new WebSocketService('wss://dev.imlogic.cn/api/im/connect');
-    newWs.connect();
+  
   });
   return (
     <PanelGroup
